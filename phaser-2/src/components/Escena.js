@@ -89,9 +89,9 @@ class Escena extends Phaser.Scene {
         this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
         // bombas
-        // this.bombs = this.physics.add.group();
-        // this.physics.add.collider(bombs, platforms);
-        // this.physics.add.collider(player, bombs, hitBomb, null, this);
+        this.bombs = this.physics.add.group();
+        this.physics.add.collider(this.bombs, this.platforms);
+        this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
 
     }
 
@@ -127,20 +127,20 @@ class Escena extends Phaser.Scene {
                 child.enableBody(true, child.x, 0, true, true);
             });
 
-            // var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-            // var bomb = bombs.create(x, 16, 'bomb');
-            // bomb.setBounce(1);
-            // bomb.setCollideWorldBounds(true);
-            // bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            var x = (this.player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+            var bomb = this.bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
         }
     }
 
-    // hitBomb(player, bomb) {
-    //     this.physics.pause();
-    //     player.setTint(0xff0000);
-    //     player.anims.play('turn');
-    //     gameOver = true;
-    // }
+    hitBomb(player, bomb) {
+        this.physics.pause();
+        player.setTint(0xff0000);
+        player.anims.play('turn');
+        this.gameOver = true;
+    }
 }
 
 export default Escena;
