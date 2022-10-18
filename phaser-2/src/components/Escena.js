@@ -67,8 +67,8 @@ class Escena extends Phaser.Scene {
         // agregando las estrellas
         this.stars = this.physics.add.group({
             key: 'star',
-            repeat: 15, // cantidad de estrellas
-            setXY: { x: 12, y: 0, stepX: 60 }
+            repeat: 11, // cantidad de estrellas
+            setXY: { x: 12, y: 0, stepX: 70 }
         });
 
         //esto si genera el rebote del grupo
